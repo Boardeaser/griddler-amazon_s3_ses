@@ -136,7 +136,7 @@ module Griddler
         begin
           Net::HTTP.get URI.encode(confirmation_endpoint)
         rescue 
-          Rails.logger.error "Error confirming subscription #{confirmation_endpoint}"
+          Rails.logger.error "Error confirming subscription #{confirmation_endpoint} #{$!.inspect}"
         end
       end
 
