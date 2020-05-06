@@ -120,7 +120,7 @@ module Griddler
       end
 
       def tempfile_for_attachment(attachment)
-        filename = attachment.filename.gsub(/\/|\\/, '_')
+        filename = attachment.filename.gsub(/\/|\\|~/, '_')
         tempfile = Tempfile.new(filename, Dir::tmpdir, encoding: 'ascii-8bit')
         content = attachment.body.decoded
         tempfile.write(content)
