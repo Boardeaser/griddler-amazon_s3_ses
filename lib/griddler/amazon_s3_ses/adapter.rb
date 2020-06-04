@@ -37,7 +37,8 @@ module Griddler
             text: text_part,
             html: html_part,
             headers: raw_headers,
-            attachments: attachment_files
+            attachments: attachment_files,
+            original_message: message
           )
         else
           raise "Invalid SNS message type"
