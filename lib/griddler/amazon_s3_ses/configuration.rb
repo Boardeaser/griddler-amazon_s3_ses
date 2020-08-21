@@ -17,7 +17,7 @@ module Griddler
     end
 
     class Configuration
-      attr_accessor :aws_region
+      attr_accessor :aws_region, :aws_access_key_id, :aws_secret_access_key
     end
   end
 end
