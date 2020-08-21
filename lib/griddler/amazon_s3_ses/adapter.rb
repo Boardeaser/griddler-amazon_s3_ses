@@ -143,7 +143,11 @@ module Griddler
       end
 
       def s3
-        @s3 ||= Aws::S3::Resource.new(region: Griddler::AmazonS3SES.configuration.aws_region)
+        @s3 ||= Aws::S3::Resource.new({
+                  region: Griddler::AmazonS3SES.configuration.aws_region,
+                  access_key_id: Griddler::AmazonS3SES.configuration.access_key_id,
+                  secret_access_key: Griddler::AmazonS3SES.configuration.secret_access_key,
+                })
       end
 
       def email_s3_object
