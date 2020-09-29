@@ -80,8 +80,12 @@ module Griddler
 
       def message
         @message ||= begin
-          Mail.read_from_string(email_s3_object.get.body.string)
+          Mail.read_from_string(encoded_email_string)
         end
+      end
+
+      def encoded_email_string
+        email_s3_object.get.body.string.encode("UTF-8", "ISO-8859-1")
       end
 
       def multipart?
