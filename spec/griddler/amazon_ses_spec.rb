@@ -17,7 +17,11 @@ describe Griddler::AmazonS3SES::Adapter do
       sns_message[:mail][:commonHeaders][:from] = ['There <there@example.com>']
 
       allow_any_instance_of(Griddler::AmazonS3SES::Adapter).to receive(:sns_json).and_return(default_params)
-      allow(Aws::S3::Resource).to receive(:new).and_return(Aws::S3::Resource.new(stub_responses: true))
+      allow(Aws::S3::Resource).to receive(:new).and_return(Aws::S3::Resource.new(stub_responses: {
+        get_object: {
+          body: "A string with special characters åäö".encode("ISO-8859-1", "UTF-8")
+        }
+      }))
     end
 
     it_behaves_like 'Griddler adapter', :amazon_s3_ses, {}
